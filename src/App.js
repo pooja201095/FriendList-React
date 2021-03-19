@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import Input from './Components/input';
+import List from './Components/list';
+import Search from './Components/search';
+import ListContext from './Components/context';
 
 function App() {
+  let list = JSON.parse(sessionStorage.getItem('list')) || [];
+  let [searchTerm, setSearchTerm] = useState('');
+  const [listContext, setContext] = useState(list);
+  console.log("app",listContext);
+
+  // const onListUpdated = (list) => {
+  //   setList(list);
+  // }
+
+  const onSearchTermUpdate = (term) => {
+    setSearchTerm(term);
+  }
+
+  const clearList = () => {
+    // setList([]);
+    setContext([]);
+    sessionStorage.removeItem('list');
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ListContext.Provider value={[listContext, setContext]}>
+    {/* <div className="app">  */}
+      <Input ></Input>
+      <Search updateTerm={onSearchTermUpdate} ></Search>
+      <List list={listContext} searchTerm={searchTerm}></List>
+      <button onClick={clearList}>clear</button>
+    {/* </div> */}
+   </ListContext.Provider>
   );
 }
 
