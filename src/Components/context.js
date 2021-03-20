@@ -1,7 +1,5 @@
 import React from 'react';
 
-let list = JSON.parse(sessionStorage.getItem('list')) || [];
-
-const ListContext = React.createContext(list);
+const ListContext = React.createContext([]);
 
 export default ListContext;

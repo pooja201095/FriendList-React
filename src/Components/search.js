@@ -11,7 +11,7 @@ export default function Search({updateTerm}) {
         updateTerm(searchQuery);
     }
 
-    return <div className="search-container">
-        <input type="text" value={searchQuery} onChange={onChangeHandler} onKeyUp={searchList}/>
+    return <div className="input-box">
+        <input placeholder="Enter search text..." type="text" className="input-bar" value={searchQuery} onChange={onChangeHandler} onKeyUp={searchList}/>
     </div>
 }
