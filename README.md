@@ -21,3 +21,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 
 using react-id-generator for unique id for list.
+
+Hosted url: https://silly-rosalind-33b9a2.netlify.app/
+
